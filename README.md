@@ -26,35 +26,107 @@ A clean, minimal foundation to build your next project with NextJS, Clerk for au
 
 #### Option 1: NPX (Quickest)
 
+This method uses NPX to create a new project based on this boilerplate:
+
 ```bash
+# Create a new project
 npx create-yuv-app my-app
+
+# Navigate into your project folder
 cd my-app
+
+# Setup your environment variables
+cp .env.example .env.local
+
+# Edit .env.local with your credentials
+# Then start the development server
+npm run dev
 ```
+
+What's happening behind the scenes:
+1. NPX downloads and executes the create-yuv-app package
+2. The package clones the repository and sets up a new project
+3. Dependencies are automatically installed
+4. A fresh git repository is initialized
 
 #### Option 2: Git Clone
 
+For more direct control, you can clone the repository manually:
+
+##### Using the convenience script (Linux/Mac):
+
 ```bash
-# Clone using the convenience script (Linux/Mac)
+# Download and run the installation script
 curl -L https://raw.githubusercontent.com/hoodini/yuv-nextjs-boilerplate/main/install.sh | bash
 
-# OR using the Windows batch script
-curl -L https://raw.githubusercontent.com/hoodini/yuv-nextjs-boilerplate/main/install.bat -o install.bat && install.bat
+# The script will prompt for a project name
+# After installation, follow the on-screen instructions
+```
 
-# OR manually
+##### Using the Windows batch script:
+
+```bash
+# Download the installation script
+curl -L https://raw.githubusercontent.com/hoodini/yuv-nextjs-boilerplate/main/install.bat -o install.bat
+
+# Run the installation script
+install.bat
+
+# The script will prompt for a project name
+# After installation, follow the on-screen instructions
+```
+
+##### Manual installation:
+
+```bash
+# Clone the repository
 git clone https://github.com/hoodini/yuv-nextjs-boilerplate.git my-app
+
+# Navigate into the project directory
 cd my-app
+
+# Remove the existing git history
+rm -rf .git
+
+# Initialize a new git repository
+git init
+
+# Install dependencies
 npm install
+
+# Setup environment variables
+cp .env.example .env.local
+
+# Start the development server
+npm run dev
 ```
 
 #### Option 3: Docker (with local MongoDB)
+
+For a containerized development environment with built-in MongoDB:
 
 ```bash
 # Clone the repository
 git clone https://github.com/hoodini/yuv-nextjs-boilerplate.git my-app
 cd my-app
 
-# Start with Docker Compose
+# Start the application with Docker Compose
 docker-compose up -d
+
+# Your application will be available at http://localhost:3000
+# MongoDB will be accessible at mongodb://localhost:27017/myapp
+```
+
+Useful Docker commands:
+```bash
+# View logs
+docker-compose logs -f app
+
+# Stop the containers
+docker-compose down
+
+# Rebuild the containers after changes
+docker-compose up -d --build
 ```
 
 ### Setting Up Environment Variables
@@ -91,7 +163,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## 📦 Project Structure
 
 ```
-mybp/
+yuv-nextjs-boilerplate/
 ├── .clerk/               # Clerk authentication config
 ├── public/               # Static assets
 ├── src/
