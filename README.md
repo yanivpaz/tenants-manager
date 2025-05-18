@@ -1,8 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YUV.AI NextJS Boilerplate
 
-## Getting Started
+A clean, minimal foundation to build your next project with NextJS, Clerk for authentication, MongoDB Atlas for database, Shadcn UI components, and Tailwind CSS for styling.
 
-First, run the development server:
+## 🚀 Features
+
+- **NextJS 15+** - Latest Next.js with App Router
+- **Authentication** - Secure user authentication with Clerk
+- **MongoDB Atlas** - Scalable database integration
+- **Shadcn UI** - Beautiful UI components
+- **Tailwind CSS** - Utility-first CSS framework
+- **TypeScript** - Type-safe code
+- **Dark Mode** - Beautiful dark/light theme support
+- **Responsive Design** - Mobile-first approach
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- npm or yarn or pnpm
+- MongoDB Atlas account (or local MongoDB for development)
+- Clerk account
+
+### Installation Options
+
+#### Option 1: NPX (Quickest)
+
+```bash
+npx create-yuv-app my-app
+cd my-app
+```
+
+#### Option 2: Git Clone
+
+```bash
+# Clone using the convenience script (Linux/Mac)
+curl -L https://raw.githubusercontent.com/hoodini/yuv-nextjs-boilerplate/main/install.sh | bash
+
+# OR using the Windows batch script
+curl -L https://raw.githubusercontent.com/hoodini/yuv-nextjs-boilerplate/main/install.bat -o install.bat && install.bat
+
+# OR manually
+git clone https://github.com/hoodini/yuv-nextjs-boilerplate.git my-app
+cd my-app
+npm install
+```
+
+#### Option 3: Docker (with local MongoDB)
+
+```bash
+# Clone the repository
+git clone https://github.com/hoodini/yuv-nextjs-boilerplate.git my-app
+cd my-app
+
+# Start with Docker Compose
+docker-compose up -d
+```
+
+### Setting Up Environment Variables
+
+Copy the example environment file and update with your credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+Then update `.env.local` with your MongoDB connection string and Clerk credentials:
+
+```env
+# MongoDB Connection String
+MONGODB_URI="mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority"
+
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+CLERK_SECRET_KEY=your_secret_key
+```
+
+### Running the Development Server
 
 ```bash
 npm run dev
@@ -10,15 +84,80 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+mybp/
+├── .clerk/               # Clerk authentication config
+├── public/               # Static assets
+├── src/
+│   ├── app/              # App router pages
+│   │   ├── api/          # API routes
+│   │   │   ├── health/   # Health check endpoint
+│   │   │   └── mongodb/  # MongoDB API endpoints
+│   │   └── page.tsx      # Home page
+│   └── lib/              # Utility functions
+│       └── models/       # MongoDB models
+├── .env.example          # Example environment variables
+├── components.json       # Shadcn UI components config
+└── ...                   # Other config files
+```
+
+## 🐳 Docker Deployment
+
+This project includes Docker configuration for easy deployment:
+
+```bash
+# Build and run the Docker image
+docker build -t yuv-nextjs-app .
+docker run -p 3000:3000 -e MONGODB_URI=your_mongodb_uri yuv-nextjs-app
+
+# Or using Docker Compose (includes MongoDB)
+docker-compose up -d
+```
+
+## 📝 License
+
+This project is created by [Yuval Avidani](https://linktr.ee/yuvaladani), AI Builder & Speaker.
+
+"Fly High With YUV.AI"
+
+---
+
+## 📚 Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Clerk Documentation](https://clerk.com/docs)
+- [MongoDB Atlas Documentation](https://www.mongodb.com/docs/atlas/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Shadcn UI Documentation](https://ui.shadcn.com/docs)
+
+## 🙏 Credits
+
+Developed with ❤️ by [Yuval Avidani](https://linktr.ee/yuvaladani)
+
+## MongoDB Setup
+
+This project is set up to use MongoDB Atlas. Follow these steps to configure your database:
+
+1. Create an account on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+2. Create a new cluster (the free tier is sufficient for development)
+3. In the Security tab, create a database user and set up network access
+4. In the Database tab, click "Connect" on your cluster, and select "Connect your application"
+5. Copy your connection string
+6. Create a `.env.local` file in the root of your project based on `.env.example`
+7. Replace the placeholder in `MONGODB_URI` with your connection string
+
+Once you've set up your MongoDB connection string in `.env.local`, the application will automatically connect to your database.
+
+You can test the MongoDB connection by visiting the health check endpoint:
+```
+http://localhost:3000/api/health
+```
 
 ## Learn More
 
