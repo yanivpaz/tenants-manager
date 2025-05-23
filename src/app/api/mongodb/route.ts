@@ -6,7 +6,7 @@ export async function GET() {
   try {
     // Test both connection methods
     const mongoose = await connectToMongoose();
-    const { client, db } = await connectToDatabase();
+    const { db } = await connectToDatabase();
     
     // Ensure db is a MongoDB Db instance
     const mongoDb = db as Db;

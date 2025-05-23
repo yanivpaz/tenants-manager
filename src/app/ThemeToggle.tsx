@@ -4,7 +4,7 @@ import { useTheme } from "./ThemeProvider";
 import { SunIcon, MoonIcon } from "lucide-react";
 
 export function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   return (
     <button 

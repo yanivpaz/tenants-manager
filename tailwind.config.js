@@ -67,6 +67,7 @@ module.exports = {
         fadeInRight: "fadeInRight 1s ease-out",
         scaleIn: "scaleIn 1s ease-out",
         floating: "floating 3s ease-in-out infinite",
+        shimmer: "shimmer 2s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -88,6 +89,10 @@ module.exports = {
         floating: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
         },
       },
   	}
