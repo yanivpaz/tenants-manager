@@ -21,3 +21,20 @@ npm install -g next
 npm run dev
 ```
 
+## Pull the image
+```
+gh auth login -s read:packages
+echo $(gh auth token) | docker login ghcr.io -u yanivpaz --password-stdin
+docker pull ghcr.io/yanivpaz/tenants-manager:main
+```
+
+## Run 
+```
+docker-compose --env-file ./.env.local up --build
+docker-compose --env-file ./.env.local up -d
+```
+
+## Cleanup
+```
+docker rmi -f $(docker images -q)
+```
