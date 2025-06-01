@@ -16,8 +16,12 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Accept build arguments
+ARG MONGODB_URI
+
 # Set environment variables
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV MONGODB_URI=${MONGODB_URI}
 
 # Build the application
 RUN npm run build
@@ -26,8 +30,12 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
+# Accept build arguments again for runtime
+ARG MONGODB_URI
+
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV MONGODB_URI=${MONGODB_URI}
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

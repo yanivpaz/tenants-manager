@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { 
   ArrowLeft, 
   Plus, 
@@ -14,7 +13,6 @@ import {
   Eye,
   FileText,
   File,
-  Clock,
   Building2
 } from 'lucide-react';
 import Link from 'next/link';
@@ -94,10 +92,6 @@ export function CompanyOverview({ companyId }: CompanyOverviewProps) {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [uploadingFile, setUploadingFile] = useState(false);
-
-  useEffect(() => {
-    fetchCompany();
-  }, [companyId]);
 
   const fetchCompany = async () => {
     try {
@@ -188,6 +182,11 @@ export function CompanyOverview({ companyId }: CompanyOverviewProps) {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchCompany();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [companyId]); // We want this to update only when companyId changes
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -461,4 +460,4 @@ export function CompanyOverview({ companyId }: CompanyOverviewProps) {
       </div>
     </div>
   );
-} 
+}

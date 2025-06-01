@@ -1,16 +1,17 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+   # build:
+   #   context: .
+    #  dockerfile: Dockerfile
+    image: tenants-manager:latest
     restart: always
     ports:
       - "3000:3000"
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/myapp
+      - MONGODB_URI=mongodb://mongodb:27017/tenants-manager
       # Add your Clerk environment variables here
-      # - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-      # - CLERK_SECRET_KEY=your_secret_key
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_bW92ZWQtbmFyd2hhbC0zMS5jbGVyay5hY2NvdW50cy5kZXYk
+      - CLERK_SECRET_KEY=sk_test_rFuwQXDXl9dAZxPzFIUuABgtsCYxdYJWNYwaGL329B
     depends_on:
       - mongodb
     networks:

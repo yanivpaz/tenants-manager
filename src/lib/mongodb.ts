@@ -24,7 +24,7 @@ const options = {
  * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-let globalWithMongo = global as typeof globalThis & {
+const globalWithMongo = global as typeof globalThis & {
   mongoose: {
     conn: mongoose.Connection | null;
     promise: Promise<mongoose.Connection> | null;
@@ -105,4 +105,4 @@ export async function disconnectFromDatabase() {
   }
   
   cachedDb = null;
-} 
+}

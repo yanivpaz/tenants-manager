@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 interface Project {
   _id: string;
@@ -73,4 +72,4 @@ function getStatusColor(status: string): string {
     'On Hold': 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400',
   };
   return colors[status as keyof typeof colors] || colors.Planning;
-} 
+}

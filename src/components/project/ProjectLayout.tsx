@@ -70,6 +70,7 @@ export function ProjectLayout({ projectId }: ProjectLayoutProps) {
 
   useEffect(() => {
     fetchProject();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId]);
 
   const fetchProject = async () => {
@@ -321,4 +322,4 @@ function getPhaseTitle(phase: string): string {
     'insights': 'Insights',
   };
   return titles[phase as keyof typeof titles] || 'Project Section';
-} 
+}
