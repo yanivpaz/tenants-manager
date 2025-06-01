@@ -38,3 +38,9 @@ docker-compose --env-file ./.env.local up -d
 ```
 docker rmi -f $(docker images -q)
 ```
+
+
+## View MongDB
+```
+docker run -d --name mongo-express -p 8081:8081 --network tenants-manager_app-network -e ME_CONFIG_MONGODB_SERVER=mongodb -e ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017/ -e ME_CONFIG_MONGODB_ENABLE_ADMIN=true -e ME_CONFIG_BASICAUTH_USERNAME=admin -e ME_CONFIG_BASICAUTH_PASSWORD=pass mongo-express
+```
